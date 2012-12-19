@@ -12,7 +12,7 @@ A snake layout for UICollectionView, style like:
 	Section1    | Section2    |...
 	Cell1 Cell2 | Cell1 Cell2
 	Cell3 Cell4 | Cell3 Cell4
-	Cell5 …   | Cell5 ...
+	Cell5 …     | Cell5 ...
 	
 ###KMTableView
 ---
@@ -32,12 +32,13 @@ A snake layout for UICollectionView, style like:
 #####Feature:
 1. background image
 2. placeholder
+
 #####Property:
 1. @property (nonatomic) UIImage *background;
 2. @property (nonatomic) NSString *focusImageName;
 3. @property (nonatomic) NSString *unfocusImageName;
 4. @property(nonatomic,copy) NSString *placeholder;
 
->More earlier, learn faster.
+>Move earlier, learn faster.
 
 >by kimimaro 
