@@ -64,12 +64,12 @@
         _placeHolderLabel.textColor = [UIColor grayColor];
         _placeHolderLabel.text = _placeholder;
         
-        _placeHolderLabel.backgroundColor = [UIColor orangeColor];
-        self.backgroundColor = [UIColor blueColor];
+//        _placeHolderLabel.backgroundColor = [UIColor orangeColor];
+//        self.backgroundColor = [UIColor blueColor];
         
         CGRect tFrame = self.frame;
         tFrame.size.width -= 20;
-        tFrame.size.height -= 10;
+        tFrame.size.height -= 60;
         tFrame.origin.x = 10;
         tFrame.origin.y = 5;
         _placeHolderLabel.frame = tFrame;
@@ -80,7 +80,7 @@
         _placeHolderLabel.text = _placeholder;
     }
     
-    if (!_placeholder || isEmptyString(_placeholder)) {
+    if (!_placeholder || KMEmptyString(_placeholder)) {
         _placeHolderLabel.hidden = YES;
     }
     else {
