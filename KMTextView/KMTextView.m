@@ -80,7 +80,7 @@
         _placeHolderLabel.text = _placeholder;
     }
     
-    if (!_placeholder || isEmptyString(_placeholder)) {
+    if (!_placeholder || [_placeholder length] == 0) {
         _placeHolderLabel.hidden = YES;
     }
     else {
