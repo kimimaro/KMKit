@@ -64,9 +64,6 @@
         _placeHolderLabel.textColor = [UIColor grayColor];
         _placeHolderLabel.text = _placeholder;
         
-        _placeHolderLabel.backgroundColor = [UIColor orangeColor];
-        self.backgroundColor = [UIColor blueColor];
-        
         CGRect tFrame = self.frame;
         tFrame.size.width -= 20;
         tFrame.size.height -= 10;

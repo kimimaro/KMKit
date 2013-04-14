@@ -127,7 +127,7 @@
                 originY += lineMaxHeight + lineSpacing;
                 
                 // restore default value
-                interitemSpacing = [self minimumInteritemSpacingForSectionAtIndex:section];
+//                interitemSpacing = [self minimumInteritemSpacingForSectionAtIndex:section];
                 totalItemsWidth = sectionInsets.left + sectionInsets.right + itemSize.width;
                 lineMaxHeight = itemSize.height;
                 originX = sectionOffset.x + sectionInsets.left;
@@ -191,7 +191,6 @@
     
     CGFloat lineMaxHeight = 0.0;
     
-    CGFloat ret = lineSpacing;
     for (int i=0; i < [self.collectionView numberOfItemsInSection:section]; i++) {
         CGSize itemSize = [self sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:section]];
         if (totalItemsWidth + itemSize.width <= sectionSize.width) {
@@ -213,7 +212,7 @@
     totalItemsHeight += lineMaxHeight + lineSpacing;
     totalItemsHeight -= lineSpacing * (numberOfLines - 1);
     
-    ret = (sectionSize.height - totalItemsHeight) / (numberOfLines - 1);
+    CGFloat ret = (sectionSize.height - totalItemsHeight) / (numberOfLines - 1);
     return ret;
 }
 

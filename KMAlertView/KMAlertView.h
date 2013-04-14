@@ -32,11 +32,11 @@
 
 @protocol KMAlertViewDelegate <NSObject>
 @optional
-- (void)KMAlertView:(KMAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)kmAlertView:(KMAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 - (void)willPresentKMAlertView:(KMAlertView *)alertView;  // before animation and showing view
 - (void)didPresentKMAlertView:(KMAlertView *)alertView;  // after animation
 
-- (void)KMAlertView:(KMAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
-- (void)KMAlertView:(KMAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+- (void)kmAlertView:(KMAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
+- (void)kmAlertView:(KMAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 @end

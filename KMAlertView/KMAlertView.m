@@ -198,7 +198,7 @@
         
         cancelButton.frame = buttonFrame;
         
-        buttonFrame.origin.x = CGRectGetMaxX(cancelButton.frame) + 70.f;
+        buttonFrame.origin.x = CGRectGetMaxX(cancelButton.frame) + 40.f;
         
         UIButton *okButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [okButton setTitle:@"确  定" forState:UIControlStateNormal];
@@ -262,8 +262,8 @@
     [_textView resignFirstResponder];
     
     if (buttonIndex < [_buttons count]) {
-        if (_delegate && [_delegate respondsToSelector:@selector(KMAlertView:willDismissWithButtonIndex:)]) {
-            [_delegate KMAlertView:self willDismissWithButtonIndex:buttonIndex];
+        if (_delegate && [_delegate respondsToSelector:@selector(kmAlertView:willDismissWithButtonIndex:)]) {
+            [_delegate kmAlertView:self willDismissWithButtonIndex:buttonIndex];
         }
     }
     
@@ -278,8 +278,8 @@
             [UIView animateWithDuration:0.3 animations:^{
                 _dialogView.transform = zoomOut;
             } completion:^(BOOL finished) {
-                if (_delegate && [_delegate respondsToSelector:@selector(KMAlertView:didDismissWithButtonIndex:)]) {
-                    [_delegate KMAlertView:self didDismissWithButtonIndex:buttonIndex];
+                if (_delegate && [_delegate respondsToSelector:@selector(kmAlertView:didDismissWithButtonIndex:)]) {
+                    [_delegate kmAlertView:self didDismissWithButtonIndex:buttonIndex];
                 }
                 
                 [self clear];
@@ -287,8 +287,8 @@
         }];
     }
     else {
-        if (_delegate && [_delegate respondsToSelector:@selector(KMAlertView:didDismissWithButtonIndex:)]) {
-            [_delegate KMAlertView:self didDismissWithButtonIndex:buttonIndex];
+        if (_delegate && [_delegate respondsToSelector:@selector(kmAlertView:didDismissWithButtonIndex:)]) {
+            [_delegate kmAlertView:self didDismissWithButtonIndex:buttonIndex];
         }
         
         [self clear];
@@ -313,8 +313,8 @@
 
 - (void)buttonClicked:(id)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(KMAlertView:clickedButtonAtIndex:)]) {
-        [_delegate KMAlertView:self clickedButtonAtIndex:[_buttons indexOfObject:sender]];
+    if (_delegate && [_delegate respondsToSelector:@selector(kmAlertView:clickedButtonAtIndex:)]) {
+        [_delegate kmAlertView:self clickedButtonAtIndex:[_buttons indexOfObject:sender]];
     }
     
     [self dismissWithClickedButtonIndex:[_buttons indexOfObject:sender] animated:YES];
