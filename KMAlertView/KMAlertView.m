@@ -77,7 +77,7 @@
         _backgroundView.alpha = 0.3;
         [self addSubview:_backgroundView];
         
-        CGFloat topPadding = [SSCommon is568Screen] ? 110.f : 66.f;
+        CGFloat topPadding = (fabs((double)[[UIScreen mainScreen] bounds].size.height-(double)568) < DBL_EPSILON) ? 110.f : 66.f;
         CGFloat dialogWidth = 230.f;
         CGFloat dialogHeight = 160.f;
         CGRect dialogFrame = CGRectMake((vFrame.size.width - dialogWidth)/2,

@@ -52,8 +52,6 @@ __KMPointRelativeCoordinateToPoint(CGPoint point1, CGPoint point2)  // point2 is
 {
     CGPoint diffPoint = CGPointMake(point1.x - point2.x, point1.y - point2.y);
     
-//    NSLog(@"diff:%@, point1:%@, point2:%@", [NSValue valueWithCGPoint:diffPoint], [NSValue valueWithCGPoint:point1], [NSValue valueWithCGPoint:point2]);
-    
     if (diffPoint.x == 0 && diffPoint.y == 0) {
         return KMPointRelativeCoordinateSamePoint;
     }

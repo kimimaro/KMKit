@@ -8,11 +8,12 @@
 
 #import "KMViewBase.h"
 
+
 @protocol KMAlertViewDelegate;
 
 @interface KMAlertView : KMViewBase
 
-@property (nonatomic,assign) id<KMAlertViewDelegate> delegate;    // weak reference
+@property (nonatomic, weak) id<KMAlertViewDelegate> delegate;    // weak reference
 
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSArray *messages;
@@ -28,7 +29,9 @@
 - (id)initWithTitle:(NSString *)title messages:(NSArray *)messages delegate:(id<KMAlertViewDelegate>)delegate;
 - (void)show;
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
+
 @end
+
 
 @protocol KMAlertViewDelegate <NSObject>
 @optional
