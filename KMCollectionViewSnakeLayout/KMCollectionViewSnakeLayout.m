@@ -28,7 +28,7 @@
     self.minimumInteritemSpacing = 10.0;
     self.itemSize = CGSizeMake(50.0, 50.0);
     self.scrollDirection = KMCollectionViewScrollDirectionHorizontal;
-    self.sectionSize = self.collectionView.bounds.size;
+    self.sectionSize = CGSizeMake(320.f, 504.f);
     
     self.sectionInsets = UIEdgeInsetsMake(0, 0, 0, 0);
 }

@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, KMTableViewCellLocationType) {
+    KMTableViewCellLocationTypeAlone = 0,
+    KMTableViewCellLocationTypeTop,
+    KMTableViewCellLocationTypeMiddle,
+    KMTableViewCellLocationTypeBottom
+};
+
+
 @interface KMTableViewCell : UITableViewCell
+
 @property (nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic) KMTableViewCellLocationType locationType;
+
 - (void)refreshUI;
 @end

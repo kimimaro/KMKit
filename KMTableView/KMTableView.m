@@ -69,8 +69,10 @@
     BOOL groupOffsetY = 0.0;
     CGFloat groupHeight = 0.0;
     
-    if (cell) {
+    KMTableViewCell *tCell = (KMTableViewCell *)cell;
+    if (tCell) {
         if ([self numberOfRowsInSection:indexPath.section] == 1) {
+            tCell.locationType = KMTableViewCellLocationTypeAlone;
             groupOffsetY = -10.f;
             groupHeight = 20.f;
             switch (type) {
@@ -85,6 +87,7 @@
                     break;
             }
         } else if (indexPath.row == 0) {
+            tCell.locationType = KMTableViewCellLocationTypeTop;
             groupOffsetY = -10.f;
             groupHeight = 10.f;
             switch (type) {
@@ -99,6 +102,7 @@
                     break;
             }
         } else if (indexPath.row == [self numberOfRowsInSection:indexPath.section] - 1) {
+            tCell.locationType = KMTableViewCellLocationTypeBottom;
             groupHeight = 10.f;
             switch (type) {
                 case KMTableViewCellBackgroundViewTypeHighlight:
@@ -112,6 +116,7 @@
                     break;
             }
         } else {
+            tCell.locationType = KMTableViewCellLocationTypeMiddle;
             switch (type) {
                 case KMTableViewCellBackgroundViewTypeHighlight:
                     backgroundImageView = [[UIImageView alloc] initWithImage:HighlightedBackgroundMiddleBackgroundImage];
@@ -125,15 +130,15 @@
             }
         }
         
-        cell.backgroundView = nil;
-        cell.backgroundColor = [UIColor clearColor];
+        tCell.backgroundView = nil;
+        tCell.backgroundColor = [UIColor clearColor];
         
-        if ([cell isKindOfClass:[KMTableViewCell class]]) {
-            backgroundImageView.frame = CGRectMake(0, groupOffsetY, cell.bounds.size.width, cell.bounds.size.height + groupHeight);
-            ((KMTableViewCell*)cell).backgroundImageView = backgroundImageView;
+        if ([tCell isKindOfClass:[KMTableViewCell class]]) {
+            backgroundImageView.frame = CGRectMake(0, groupOffsetY, tCell.bounds.size.width, tCell.bounds.size.height + groupHeight);
+            ((KMTableViewCell*)tCell).backgroundImageView = backgroundImageView;
         }
         else {
-            cell.backgroundView = backgroundImageView;
+            tCell.backgroundView = backgroundImageView;
         }
     }
 }
