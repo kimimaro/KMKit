@@ -134,7 +134,7 @@
         tCell.backgroundColor = [UIColor clearColor];
         
         if ([tCell isKindOfClass:[KMTableViewCell class]]) {
-            backgroundImageView.frame = CGRectMake(0, groupOffsetY, tCell.bounds.size.width, tCell.bounds.size.height + groupHeight);
+            backgroundImageView.frame = CGRectMake(0, groupOffsetY, SSWidth(tCell), SSHeight(tCell) + groupHeight);
             ((KMTableViewCell*)tCell).backgroundImageView = backgroundImageView;
         }
         else {

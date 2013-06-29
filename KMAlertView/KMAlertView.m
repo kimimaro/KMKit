@@ -16,7 +16,7 @@
 
 #define DialogWidth 260
 #define DialogHeight 160
-#define DefaultTopPadding ([SSCommon is568Screen] ? 110.f : 66.f)
+#define DefaultTopPadding ([KMCommon is568Screen] ? 110.f : 66.f)
 
 #define MaxCharacterCount 140
 
@@ -254,6 +254,8 @@
             }];
         }];
     }
+    
+    [self updateFrames];
 }
 
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated
@@ -295,13 +297,69 @@
     }
 }
 
+- (void)didChangeStatusBarFrame:(NSNotification *)notification
+{
+    [self updateFrames];
+}
+
+#pragma mark - setter&getter
+
 - (void)setMaxCharacterCount:(NSInteger)maxCharacterCount
 {
     _maxCharacterCount = maxCharacterCount;
     [self refreshPlaceHolder];
 }
 
+- (CGPoint)defaultOffsetOrigin
+{
+    CGFloat originX = ([KMAlertView applicationSize].width - DialogWidth) / 2.f;
+    CGFloat originY = DefaultTopPadding;
+    return CGPointMake(originX, originY);
+}
+
+- (CGFloat)defaultDialogWidth
+{
+    return DialogWidth;
+}
+
+- (CGFloat)defaultDialogHeight
+{
+    return DialogHeight;
+}
+
 #pragma mark - private
+
+- (void)updateFrames
+{
+    self.transform = [self transformForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+    self.frame = [self frameForSelf];
+    [self updateSubviewFrames];
+}
+
+- (void)updateSubviewFrames
+{
+    _backgroundView.frame = self.bounds;
+    _dialogView.frame = [self frameForDialogView];
+}
+
+- (CGAffineTransform)transformForOrientation:(UIInterfaceOrientation)orientation {
+    
+    switch (orientation) {
+            
+        case UIInterfaceOrientationLandscapeLeft:
+            return CGAffineTransformMakeRotation(-DegreesToRadians(90));
+            
+        case UIInterfaceOrientationLandscapeRight:
+            return CGAffineTransformMakeRotation(DegreesToRadians(90));
+            
+        case UIInterfaceOrientationPortraitUpsideDown:
+            return CGAffineTransformMakeRotation(DegreesToRadians(180));
+            
+        case UIInterfaceOrientationPortrait:
+        default:
+            return CGAffineTransformMakeRotation(DegreesToRadians(0));
+    }
+}
 
 - (void)clear
 {
@@ -342,6 +400,62 @@
 {
     NSInteger changedLength = [textView.text length] - range.length + [text length];
     return changedLength <= _maxCharacterCount;
+}
+
+#pragma mark - frames
+
+- (CGRect)frameForDialogView
+{
+    CGFloat originX = self.defaultOffsetOrigin.x;
+    CGFloat originY = self.defaultOffsetOrigin.y;
+    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+        if (!CGPointEqualToPoint(_portraitOffsetOrigin, CGPointZero)) {
+            originX = _portraitOffsetOrigin.x;
+            originY = _portraitOffsetOrigin.y;
+        }
+        else if (!CGPointEqualToPoint(_offsetOrigin, CGPointZero)) {
+            originX = _offsetOrigin.x;
+            originY = _offsetOrigin.y;
+        }
+    }
+    else {
+        if (!CGPointEqualToPoint(_landscapeOffsetOrigin, CGPointZero)) {
+            originX = _landscapeOffsetOrigin.x;
+            originY = _landscapeOffsetOrigin.y;
+        }
+        else if (!CGPointEqualToPoint(_offsetOrigin, CGPointZero)) {
+            originX = _offsetOrigin.x;
+            originY = _offsetOrigin.y;
+        }
+    }
+    
+    CGRect dialogFrame = CGRectMake(originX, originY, self.defaultDialogWidth, self.defaultDialogHeight);
+    return dialogFrame;
+}
+
+- (CGRect)frameForSelf
+{
+    CGFloat screenWidth = MIN(screenSize().width, screenSize().height);
+    CGFloat screenHeight = MAX(screenSize().width, screenSize().height);
+    CGRect frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    return frame;
+}
+
+#pragma mark - Class
+
++ (CGSize)applicationSize
+{
+    CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;
+    float width = 0, height = 0;
+    if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        width = MAX(screenSize.width, screenSize.height);
+        height = MIN(screenSize.width, screenSize.height);
+    }
+    else {
+        width = MIN(screenSize.width, screenSize.height);
+        height = MAX(screenSize.width, screenSize.height);
+    }
+    return CGSizeMake(width, height);
 }
 
 @end

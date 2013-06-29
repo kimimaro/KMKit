@@ -19,11 +19,39 @@
     return self;
 }
 
+#pragma mark - setter&getter
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setUnfolded:(BOOL)unfolded
+{
+    _unfolded = unfolded;
+    
+    if (_unfolded) {
+        [self removeConstraints:[self constraints]];
+        [self addConstraints:[self unfoldConstraints]];
+    }
+    else {
+        [self removeConstraints:[self constraints]];
+        [self addConstraints:[self foldConstraints]];
+    }
+}
+
+#pragma mark - extended
+
+- (NSArray *)foldConstraints
+{
+    return @[];
+}
+
+- (NSArray *)unfoldConstraints
+{
+    return @[];
 }
 
 @end

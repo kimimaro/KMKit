@@ -8,6 +8,10 @@
 
 #import "KMTableViewCell.h"
 
-@interface KMUnfoldTableCell : KMTableViewCell
+@interface KMUnfoldTableCell : KMTableViewCell {
+    BOOL _unfolded;
+}
 @property (nonatomic, getter = isUnfolded) BOOL unfolded;
+- (NSArray *)foldConstraints;
+- (NSArray *)unfoldConstraints;
 @end

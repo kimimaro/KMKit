@@ -26,6 +26,15 @@
 @property (nonatomic, readonly, getter=isVisible) BOOL visible;
 @property (nonatomic) id userInfo;
 
+// default CGPointZero，这样外界就不能设置在 (0,0) 点显示dialog，一般情况下没有这样的需求
+@property (nonatomic, readonly) CGPoint defaultOffsetOrigin;    // depend current orientation
+@property (nonatomic, readonly) CGFloat defaultDialogWidth;
+@property (nonatomic, readonly) CGFloat defaultDialogHeight;
+
+@property (nonatomic, assign) CGPoint offsetOrigin;
+@property (nonatomic, assign) CGPoint portraitOffsetOrigin;
+@property (nonatomic, assign) CGPoint landscapeOffsetOrigin;
+
 - (id)initWithTitle:(NSString *)title messages:(NSArray *)messages delegate:(id<KMAlertViewDelegate>)delegate;
 - (void)show;
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
