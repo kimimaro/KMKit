@@ -14,7 +14,7 @@
 #define DegreesToRadians(degrees) (degrees * M_PI / 180)
 #define MaxCharacterCount 140
 
-#define DialogWidth 260
+#define DialogWidth 230
 #define DialogHeight 160
 #define DefaultTopPadding ([KMCommon is568Screen] ? 110.f : 66.f)
 
@@ -77,9 +77,9 @@
         _backgroundView.alpha = 0.3;
         [self addSubview:_backgroundView];
         
-        CGFloat topPadding = (fabs((double)[[UIScreen mainScreen] bounds].size.height-(double)568) < DBL_EPSILON) ? 110.f : 66.f;
-        CGFloat dialogWidth = 230.f;
-        CGFloat dialogHeight = 160.f;
+        CGFloat topPadding = DefaultTopPadding;
+        CGFloat dialogWidth = DialogWidth;
+        CGFloat dialogHeight = DialogHeight;
         CGRect dialogFrame = CGRectMake((vFrame.size.width - dialogWidth)/2,
                                         topPadding,
                                         dialogWidth,
@@ -251,11 +251,13 @@
                     [_delegate didPresentKMAlertView:self];
                 }
                 self.visible = YES;
+                [self updateFrames];
             }];
         }];
     }
-    
-    [self updateFrames];
+    else {
+        [self updateFrames];
+    }
 }
 
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated
@@ -340,6 +342,8 @@
 {
     _backgroundView.frame = self.bounds;
     _dialogView.frame = [self frameForDialogView];
+    
+    _dialogView.backgroundColor = [UIColor purpleColor];
 }
 
 - (CGAffineTransform)transformForOrientation:(UIInterfaceOrientation)orientation {
