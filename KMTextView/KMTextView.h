@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface KMTextView : UITextView
+
 @property (nonatomic) UIImage *background;
 @property (nonatomic) NSString *focusImageName;
 @property (nonatomic) NSString *unfocusImageName;
 
 @property(nonatomic,copy) NSString *placeholder;          // default is nil. string is gray
+
+- (void)insertString:(NSString *)insertingString;
+
 @end

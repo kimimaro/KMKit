@@ -105,4 +105,20 @@
     [self sendSubviewToBack:_backgroundView];
 }
 
+- (void)insertString:(NSString *)insertingString
+{
+    NSRange range = self.selectedRange;
+    NSString * firstHalfString = [self.text substringToIndex:range.location];
+    NSString * secondHalfString = [self.text substringFromIndex: range.location];
+    self.scrollEnabled = NO;  // turn off scrolling or you'll get dizzy ... I promise
+    
+    self.text = [NSString stringWithFormat: @"%@%@%@",
+                     firstHalfString,
+                     insertingString,
+                     secondHalfString];
+    range.location += [insertingString length];
+    self.selectedRange = range;
+    self.scrollEnabled = YES;  // turn scrolling back on.
+}
+
 @end

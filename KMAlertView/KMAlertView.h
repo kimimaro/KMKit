@@ -7,13 +7,16 @@
 //
 
 #import "KMViewBase.h"
+#import "KMTextView.h"
 
 
+@protocol KMAlertViewDataSource;
 @protocol KMAlertViewDelegate;
 
 @interface KMAlertView : KMViewBase
 
-@property (nonatomic, weak) id<KMAlertViewDelegate> delegate;    // weak reference
+@property (nonatomic, weak) id<KMAlertViewDataSource> dataSource;   // weak reference
+@property (nonatomic, weak) id<KMAlertViewDelegate> delegate;       // weak reference
 
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSArray *messages;
@@ -22,7 +25,7 @@
 @property (nonatomic) NSInteger cancelButtonIndex;   // 0
 @property (nonatomic) NSInteger okButtonIndex;       // 1
 
-@property (nonatomic, readonly) UITextView *textView;
+@property (nonatomic, readonly) KMTextView *textView;
 @property (nonatomic, readonly, getter=isVisible) BOOL visible;
 @property (nonatomic) id userInfo;
 
@@ -39,6 +42,12 @@
 - (void)show;
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
 
+@end
+
+
+@protocol KMAlertViewDataSource <NSObject>
+@optional
+- (NSArray *)helperWordsInkmAlertView:(KMAlertView *)alertView;
 @end
 
 
