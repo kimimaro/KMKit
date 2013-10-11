@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "KMAlertView.h"
+#import "ToolbarButton.h"
 #import "UIColor+UIColorAddtions.h"
 #import "UILabel+UILabelAdditions.h"
 
@@ -257,6 +258,7 @@
     
     CGRect barFrame = _helperToolbar.frame;
     barFrame.origin.y = CGRectGetMinY(keyboardFrame) - SSHeight(_helperToolbar);
+    barFrame.size.width = keyboardFrame.size.width;
     
     [UIView animateWithDuration:duration animations:^{
         _helperToolbar.frame = barFrame;
@@ -446,7 +448,7 @@
             
             NSMutableArray *mutItems = [NSMutableArray arrayWithCapacity:5];
             [words enumerateObjectsUsingBlock:^(NSString *word, NSUInteger idx, BOOL *stop) {
-                UIButton *tButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                ToolbarButton *tButton = [ToolbarButton buttonWithType:UIButtonTypeCustom];
                 tButton.tag = KMAlertViewHelperWordButtonTagPrefix + idx;
                 [tButton addTarget:self action:@selector(helperWordButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
                 tButton.titleLabel.font = [UIFont boldSystemFontOfSize:12.f];

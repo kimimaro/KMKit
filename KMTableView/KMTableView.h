@@ -16,18 +16,18 @@ typedef enum {
 
 @interface KMTableView : UITableView
 
-@property (nonatomic) NSString *groupedBackgroundSingleCellBackgroundImageName;
-@property (nonatomic) NSString *groupedHighlightedBackgroundSingleCellBackgroundImageName;
-@property (nonatomic) NSString *groupedSelectedBackgroundSingleCellBackgroundImageName;
-@property (nonatomic) NSString *groupedBackgroundTopCellBackgroundImageName;
-@property (nonatomic) NSString *groupedHighlightedBackgroundTopCellBackgroundImageName;
-@property (nonatomic) NSString *groupedSelectedBackgroundTopCellBackgroundImageName;
-@property (nonatomic) NSString *groupedBackgroundBottomCellBackgroundImageName;
-@property (nonatomic) NSString *groupedHighlightedBackgroundBottomCellBackgroundImageName;
-@property (nonatomic) NSString *groupedSelectedBackgroundBottomCellBackgroundImageName;
-@property (nonatomic) NSString *groupedBackgroundMiddleCellBackgroundImageName;
-@property (nonatomic) NSString *groupedHighlightedBackgroundMiddleCellBackgroundImageName;
-@property (nonatomic) NSString *groupedSelectedBackgroundMiddleCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedBackgroundSingleCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedHighlightedBackgroundSingleCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedSelectedBackgroundSingleCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedBackgroundTopCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedHighlightedBackgroundTopCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedSelectedBackgroundTopCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedBackgroundBottomCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedHighlightedBackgroundBottomCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedSelectedBackgroundBottomCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedBackgroundMiddleCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedHighlightedBackgroundMiddleCellBackgroundImageName;
+//@property (nonatomic) NSString *groupedSelectedBackgroundMiddleCellBackgroundImageName;
 
 - (void)updateBackgroundViewForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath backgroundViewType:(KMTableViewCellBackgroundViewType)type;
 
